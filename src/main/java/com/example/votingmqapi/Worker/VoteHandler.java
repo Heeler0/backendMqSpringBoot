@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class VoteHandler {
 
-    
+
 
     @RabbitListener(queues = "votesQueue")
     public void receiveMessage(String message) {
