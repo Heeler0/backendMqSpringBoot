@@ -16,13 +16,10 @@ public class mqConfig {
 
     @Bean
     public Queue createQueue() {
-        //For learning purpose - durable=false,
-        // in a real project you may need to set this as true.
         return new Queue(QUEUE_NAME, true);
     }
     @Bean
     public Exchange fanoutExchange() {
-        // durable=true, autoDelete=false
         return new FanoutExchange(EXCHANGE_NAME, true, false);
     }
     @Bean
