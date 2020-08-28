@@ -9,3 +9,4 @@ Backend Vote saver with RabbitMq
 ### Spring Web
 ### Spring Data JPA
 ### MySQL Driver
+### Spring for RabbitMQ
