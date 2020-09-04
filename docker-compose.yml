@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+
+  springapi:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 8080:8080
+    container_name: spring-api
+    environment:
+    - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3308/Voting
+    - SPRING_DATASOURCE_USERNAME=root
+    - SPRING_DATASOURCE_PASSWORD=root
+    - SPRING_RABBITMQ_HOST=rabbitmq-container    
+    depends_on:
+      - rabbitmq-container
+      - mysql-container
+       
+  mysql-container:
+    image: mysql
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'Voting'
+   
+  rabbitmq-container:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_ERLANG_COOKIE: 'secret cookie here'
+    ports:
+      - "15672:15672"
+      - "5672:5672"     
+            
+            
+
+            
